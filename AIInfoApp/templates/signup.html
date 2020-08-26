@@ -8,7 +8,7 @@
   <body>
   <h1>signup</h1>
   {% if error.state %}
-    <h2>{{error.msg}}</h2>
+    <h3>{{error.msg}}</h3>
   {% endif %}
     <form action="{% url 'signup' %}" method="POST">
         {% csrf_token %}
