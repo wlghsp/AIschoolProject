@@ -6,19 +6,23 @@
     <title>login</title>
   </head>
   <body>
-  <h1>login</h1>
-  {% if error.state %}
+    <h1>login</h1>
+    {% if error.state %}
     <h3>{{error.msg}}</h3>
-  {% endif %}
+    {% endif %}
     <form action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" placeholder="아이디를 입력하세요" name="user_id"/>
-        <br/>
-        <br/>
-        <input type="password" placeholder="비밀번호를 입력하세요" name="user_pw"/>
-        <br/>
-        <br/>
-        <button type="submit">로그인하기 >  </button>
+      {% csrf_token %}
+      <input type="text" placeholder="아이디를 입력하세요" name="user_id" />
+      <br />
+      <br />
+      <input
+        type="password"
+        placeholder="비밀번호를 입력하세요"
+        name="user_pw"
+      />
+      <br />
+      <br />
+      <button type="submit">로그인하기 ></button>
     </form>
   </body>
 </html>

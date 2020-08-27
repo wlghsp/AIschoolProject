@@ -10,16 +10,20 @@ class AiClass(models.Model):
     class_room = models.CharField(max_length=10)
 
 
-class AiStudents(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="student")
+class AiStudent(models.Model):
+    # related_name은 AiClass의 연결된 AiStudent를 뭘로 부를지를 명시
+    # on_delete=models.CASCADE는 class 삭제될 때 해당 반의 student도 삭제된다.
     participate_class = models.ForeignKey(
         AiClass, on_delete=models.CASCADE, related_name='student')
+    # user와 1대1 매칭
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="student")
     name = models.CharField(max_length=10)
     phone_num = models.CharField(max_length=15)
 
 
 class StudentPost(models.Model):
+    # 삭제될 때 null값을 넣자 null=True를 꼭 해줘야 한다.
     writer = models.ForeignKey(
-        AiStudents, on_delete=models.SET_NULL, null=True, related_name="post")
-    intro_text = models.TextField()
+        AiStudent, on_delete=models.SET_NULL, null=True, related_name="post")
+    intro = models.TextField()

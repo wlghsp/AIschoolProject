@@ -6,19 +6,14 @@
     <title>Document</title>
   </head>
   <body>
-  <h1>detail</h1>
-    {{class_obj.class_num}}
-    {{class_obj.teacher}}
+    <h1>detail</h1>
+    {{class_obj.class_num}} {{class_obj.teacher}}
     <ul>
-      {% for student in student_obj %}
-        <a href="{% url 'student' student.pk %}">
-          <li>이름: {{student.name}}</li>
-        </a>
-          <li>전화번호: {{student.phone_num}}</li>
-          <li>자기소개: {{student.intro_text}}</li>
+      {% for student in class_obj.student.all %}
+        <a href="{% url 'student' student.pk %}"> {{student.name}} </a>
+        <br />
+        <br />
       {% endfor %}
     </ul>
-
-    <a href="{% url 'add' class_obj.pk %}">등록하기 > </a>
   </body>
 </html>
